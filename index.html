@@ -1,0 +1,573 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Radar | Rishitha</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== CREATOR CREDIT ===== */
+
+        .creator-credit {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: #667085;
+            letter-spacing: 0.2px;
+        }
+
+        .creator-credit strong {
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .creator-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            border: 1px solid rgba(17, 24, 39, 0.10);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.75);
+            color: #667085;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .creator-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #111827;
+        }
+
+        .dashboard-creator {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+        }
+
+        .dashboard-footer {
+            margin-top: 35px;
+            padding: 18px 0 8px;
+            text-align: center;
+            font-size: 12px;
+            color: #98a2b3;
+            border-top: 1px solid rgba(17, 24, 39, 0.07);
+        }
+
+        .dashboard-footer strong {
+            color: #475467;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <section id="loginPage" class="login-page">
+
+        <div class="login-glow glow-one"></div>
+        <div class="login-glow glow-two"></div>
+
+        <div class="login-container">
+
+            <div class="brand">
+                <div class="brand-logo">DR</div>
+                <h1>Deadline Radar</h1>
+                <p>Stay ahead of every deadline.</p>
+            </div>
+
+            <div class="login-card">
+
+                <h2>Welcome back</h2>
+
+                <p class="login-description">
+                    Sign in to manage your academic deadlines.
+                </p>
+
+                <form id="loginForm">
+
+                    <label for="loginEmail">
+                        Email or Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginEmail"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="showPassword"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    <button class="login-btn" type="submit">
+                        Sign In
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+                <p class="demo-text">
+                    Demo access · No account required
+                </p>
+
+            </div>
+
+            <!-- CREATOR CREDIT -->
+            <p class="creator-credit">
+                Created &amp; Developed by
+                <strong>Rishitha Mylapalli</strong>
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboardPage" class="dashboard-page hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="sidebar-logo">
+                    DR
+                </div>
+
+                <div>
+                    <h2>Deadline Radar</h2>
+                    <p>Academic Planner</p>
+                </div>
+
+            </div>
+
+
+            <nav class="nav-menu">
+
+                <button class="nav-btn active" data-section="dashboard">
+                    <span>▦</span>
+                    Dashboard
+                </button>
+
+                <button class="nav-btn" data-section="today">
+                    <span>◷</span>
+                    Due Today
+                </button>
+
+                <button class="nav-btn" data-section="upcoming">
+                    <span>↗</span>
+                    Upcoming
+                </button>
+
+                <button class="nav-btn" data-section="overdue">
+                    <span>!</span>
+                    Overdue
+                </button>
+
+                <button class="nav-btn" data-section="completed">
+                    <span>✓</span>
+                    Completed
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        R
+                    </div>
+
+                    <div>
+                        <strong>Rishitha</strong>
+                        <small>Student</small>
+                    </div>
+
+                </div>
+
+                <button id="logoutBtn" class="logout-btn">
+                    ⇥ &nbsp; Sign Out
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <div>
+                    <p id="todayDate" class="top-date"></p>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+
+                <button id="addDeadlineBtn" class="add-btn">
+                    <span>+</span>
+                    Add Deadline
+                </button>
+
+            </header>
+
+
+            <div class="content">
+
+                <!-- CREATOR BADGE -->
+                <div class="dashboard-creator">
+                    <div class="creator-badge">
+                        CREATOR&nbsp; • &nbsp;Rishitha Mylapalli
+                    </div>
+                </div>
+
+
+                <!-- WELCOME -->
+                <div class="welcome">
+
+                    <div>
+                        <h2>
+                            Good morning, Rishitha 👋
+                        </h2>
+
+                        <p>
+                            Here’s what needs your attention today.
+                        </p>
+                    </div>
+
+                    <div class="focus-status">
+                        <span></span>
+                        Stay focused
+                    </div>
+
+                </div>
+
+
+                <!-- STATS -->
+                <div class="stats">
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Total Deadlines</span>
+                            <div class="stat-icon blue">
+                                ▣
+                            </div>
+                        </div>
+
+                        <strong id="totalCount">
+                            0
+                        </strong>
+
+                        <small>
+                            All your tasks
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Due Today</span>
+                            <div class="stat-icon orange">
+                                ◷
+                            </div>
+                        </div>
+
+                        <strong id="todayCount">
+                            0
+                        </strong>
+
+                        <small>
+                            Needs attention today
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Overdue</span>
+                            <div class="stat-icon red">
+                                !
+                            </div>
+                        </div>
+
+                        <strong id="overdueCount">
+                            0
+                        </strong>
+
+                        <small>
+                            Past their deadline
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Completed</span>
+                            <div class="stat-icon green">
+                                ✓
+                            </div>
+                        </div>
+
+                        <strong id="completedCount">
+                            0
+                        </strong>
+
+                        <small>
+                            Successfully finished
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+                <div class="progress-card">
+
+                    <div>
+                        <h3>
+                            Completion progress
+                        </h3>
+
+                        <p>
+                            Keep going — every task counts.
+                        </p>
+                    </div>
+
+                    <strong id="progressValue">
+                        0%
+                    </strong>
+
+                    <div class="progress-track">
+                        <div id="progressBar"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- DEADLINES -->
+                <section class="deadlines-section">
+
+                    <div class="section-top">
+
+                        <div>
+                            <h2 id="sectionTitle">
+                                Upcoming Deadlines
+                            </h2>
+
+                            <p id="sectionDescription">
+                                Stay on top of what’s coming next.
+                            </p>
+                        </div>
+
+
+                        <div class="search-box">
+
+                            <span>
+                                ⌕
+                            </span>
+
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Search deadlines..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="deadlineList"
+                        class="deadline-list"
+                    ></div>
+
+                </section>
+
+
+                <!-- CREATOR FOOTER -->
+                <div class="dashboard-footer">
+                    © 2026 Deadline Radar
+                    · Built by
+                    <strong>Rishitha Mylapalli</strong>
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- ADD DEADLINE MODAL -->
+    <div id="deadlineModal" class="modal hidden">
+
+        <div
+            class="modal-overlay"
+            id="modalOverlay"
+        ></div>
+
+        <div class="modal-card">
+
+            <button
+                id="closeModal"
+                class="close-modal"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="modal-title">
+
+                <div class="modal-symbol">
+                    +
+                </div>
+
+                <div>
+                    <h2>
+                        Add New Deadline
+                    </h2>
+
+                    <p>
+                        Create a task and keep it on radar.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="deadlineForm">
+
+                <label for="taskTitle">
+                    Deadline Title
+                </label>
+
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="e.g. Physics Observation"
+                    required
+                >
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label for="taskSubject">
+                            Subject
+                        </label>
+
+                        <input
+                            type="text"
+                            id="taskSubject"
+                            placeholder="e.g. Physics"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="taskDate">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label for="taskPriority">
+                    Priority
+                </label>
+
+                <select id="taskPriority">
+
+                    <option value="low">
+                        Low Priority
+                    </option>
+
+                    <option value="medium" selected>
+                        Medium Priority
+                    </option>
+
+                    <option value="high">
+                        High Priority
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="save-btn"
+                    type="submit"
+                >
+                    Create Deadline
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- KEEPING EXISTING JAVASCRIPT CONNECTION -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
